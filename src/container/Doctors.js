@@ -44,7 +44,7 @@ function Doctors(props) {
                         tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
                         ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.</p>
 
-                    <Link to={"/doctors/1"}>Hello 1</Link>
+                        <Link to={'/doctors/Visiting_Doctor'}>Visiting_Doctor</Link>
                 </div>
                 <div className="row">
                     {

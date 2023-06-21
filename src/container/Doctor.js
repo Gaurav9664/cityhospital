@@ -37,7 +37,7 @@ function Doctor(props) {
     const [pDtat, setpData] = useState(doctorData)
     const { id } = useParams()
 
-    let fData = pDtat.filter((v) => v.id == id)
+    let fData = pDtat.filter((v) => v.id === parseInt(id))
 
     console.log(fData[0]);
 
@@ -45,24 +45,22 @@ function Doctor(props) {
         <section id="doctor" className="doctor">
             <div className="container">
                 {
-                    fData.map((v, i) => {
-                        return (
-                            <div className="member d-flex align-items-start">
-                                <div className="pic"><img src={v.url} className="img-doctor" alt /></div>
-                                <div className="member-info">
-                                    <h1> <span>Name :- </span> {v.name}</h1>
-                                    <h6>{v.detection}</h6>
-                                    <p>{v.description}</p>
-                                    <div className="social">
-                                        <a href="#"><i className="ri-twitter-fill" /></a>
-                                        <a href="#"><i className="ri-facebook-fill" /></a>
-                                        <a href="#"><i className="ri-instagram-fill" /></a>
-                                        <a href="#"> <i className="ri-linkedin-box-fill" /> </a>
-                                    </div>
-                                </div>
+
+                    <div className="member d-flex align-items-start">
+                        <div className="pic"><img src={fData[0].url} className="img-doctor" alt /></div>
+                        <div className="member-info">
+                            <h1> <span>Name :- </span> {fData[0].name}</h1>
+                            <h6>{fData[0].detection}</h6>
+                            <p>{fData[0].description}</p>
+                            <div className="social">
+                                <a href="#"><i className="ri-twitter-fill" /></a>
+                                <a href="#"><i className="ri-facebook-fill" /></a>
+                                <a href="#"><i className="ri-instagram-fill" /></a>
+                                <a href="#"> <i className="ri-linkedin-box-fill" /> </a>
                             </div>
-                        )
-                    })
+                        </div>
+                    </div>
+
                 }
             </div>
         </section>
