@@ -9,8 +9,8 @@ import { Routes, Route } from 'react-router-dom'
 import Doctor from './container/Doctor';
 import VisitingDoctor from './container/VisitingDoctor';
 import Appointment from './container/Appointment';
-import NotFound from './container/NotFound';
-import Auth from './container/Auth';
+import NotFound from './container/NotFound'
+import Auth from './container/Auth'
 
 function App() {
   return (
