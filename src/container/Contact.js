@@ -8,12 +8,12 @@ function Contact(props) {
         name: yup.string().required('Plese Enter Name'),
         email: yup.string().email('Plese Enter Valid Email').required('Plese Enter Email'),
         subject: yup.string().required('Plese Enter Subject'),
-        message: yup.string().required('Plese Enter Message').test('message', 'Maximum 5 words allowd', function(val) {
-            let arr=val.split(" ")
+        message: yup.string().required('Plese Enter Message').test('message', 'Maximum 5 words allowd', function (val) {
+            let arr = val.split(" ")
 
             if (arr.length > 5) {
                 return false;
-            }else {
+            } else {
                 return true;
             }
         })

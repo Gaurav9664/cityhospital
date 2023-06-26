@@ -12,21 +12,22 @@ import Appointment from './container/Appointment';
 import NotFound from './container/NotFound'
 import Auth from './container/Auth'
 import Fromvalidetion from './test/Fromvalidetion';
+import Auth1 from './container/Auth1';
 
 function App() {
   return (
     <>
-      {/* <Header />
+      <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/departments' element={<Departments />} />
         <Route path='/doctors' element={<Doctors />} />
-        {/* <Route path='/doctors/:id' element={<Doctor />} />
-      <Route path='/doctors/Visiting_Doctor' element={<VisitingDoctor />} /> */}
+        <Route path='/doctors/:id' element={<Doctor />} />
+        <Route path='/doctors/Visiting_Doctor' element={<VisitingDoctor />} />
 
-        {/* <Route path='/doctors'>
+        <Route path='/doctors'>
           <Route path='/doctors/:id' element={<Doctor />} />
-          <Route path='/doctors/Visiting_Doctor' element={<VisitingDoctor />} />  
+          <Route path='/doctors/Visiting_Doctor' element={<VisitingDoctor />} />
         </Route>
 
 
@@ -34,12 +35,11 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/appointment' element={<Appointment />} />
         <Route path='*' element={<NotFound />} />
-        <Route path='/auth' element={<Auth />} /> */}
-{/* 
+        {/* <Route path='/auth' element={<Auth />} /> */}
+        <Route path='/auth' element={<Auth1 />} />
+        <Route path='/Fromvalidetion' element={<Fromvalidetion />} />
       </Routes>
-      <Footer /> */}
-
-      <Fromvalidetion />
+      <Footer />
     </>
   );
 }

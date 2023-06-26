@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import * as yup from 'yup';
 
 function Auth(props) {
 
     // yup formik
     const [authType, setAuthType] = useState('Login')
     const [reset, setReset] = useState(false)
+
+    let authObj = {};
+
+    if (authType === 'Login') {
+        authObj = {
+            email: yup.string().email('Plese Enter Valid Email').required('Plese Enter Email'),
+            
+        }
+    }
+
+
     return (
         <div>
             <section id="appointment" className="appointment">
@@ -15,12 +27,12 @@ function Auth(props) {
                         {reset ? <h2>Reset Password</h2> :
                             authType === 'Login' ? <h2>Login</h2> : <h2>Sign Up</h2>}
 
-                     
+
                         <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
                             blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
                             Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p>
                     </div>
-                    <div className="php-email-form">
+                    <form className="php-email-form">
                         {
                             authType === 'SignUp' ? <div className="col-md-7 form-group mt-3 mt-md-0" style={{ margin: '0 auto' }}>
                                 <input type="text" className="form-control" name="name" id="name" placeholder="Your Name" data-rule="name" data-msg="Please enter a Your Name" />
@@ -28,7 +40,7 @@ function Auth(props) {
                             </div> : null
                         }
 
-                     
+
                         <div className="col-md-7 form-group mt-3 mt-md-0" style={{ margin: '0 auto' }}>
                             <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                             <div className="validate" />
@@ -36,22 +48,22 @@ function Auth(props) {
 
                         {
 
-                            !reset?<div className="col-md-7 form-group mt-3 mt-md-0" style={{ margin: '0 auto' }}>
-                            <input type="password" className="form-control" name="phone" id="phone" placeholder="Password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                            <div className="validate" />
+                            !reset ? <div className="col-md-7 form-group mt-3 mt-md-0" style={{ margin: '0 auto' }}>
+                                <input type="password" className="form-control" name="phone" id="phone" placeholder="Password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div className="validate" />
 
-                        </div>:null
-                          
+                            </div> : null
+
                         }
 
 
 
                         {
-                            reset ? <div className="text-center"><button type="submit">submit</button></div>:
-                            authType === 'Login'?
-                            <div className="text-center"><button type="submit">Login</button></div>:
-                            <div className="text-center"><button type="submit">Sign Up</button></div>
-                               
+                            reset ? <div className="text-center"><button type="submit">submit</button></div> :
+                                authType === 'Login' ?
+                                    <div className="text-center"><button type="submit">Login</button></div> :
+                                    <div className="text-center"><button type="submit">Sign Up</button></div>
+
                         }
                         {
                             authType === 'Login' ?
@@ -69,7 +81,7 @@ function Auth(props) {
 
 
 
-                    </div>
+                    </form>
                 </div>
             </section>
 
