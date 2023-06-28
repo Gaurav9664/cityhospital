@@ -27,10 +27,11 @@ import MedicationIcon from '@mui/icons-material/Medication';
 const drawerWidth = 240;
 
 const DoctorData = [
-  { labal: 'Medicine', to: '/Medicine', icon: <LocalHospitalIcon /> },
-  { labal: 'Product', to: '/Product', icon: <ProductionQuantityLimitsIcon /> },
-  { labal: 'Doctor', to: '/Doctor', icon: <MedicationIcon /> },
-  { labal: 'Appointment', to: '/Appointment', icon: <BookOnlineIcon /> },
+  { labal: 'Medicine', to: '/admin/Medicine', icon: <LocalHospitalIcon /> },
+  { labal: 'Product', to: '/admin/Product', icon: <ProductionQuantityLimitsIcon /> },
+  { labal: 'Doctor', to: '/admin/Doctor', icon: <MedicationIcon /> },
+  { labal: 'Appointment', to: '/admin/Appointment', icon: <BookOnlineIcon /> },
+  
 
 ]
 

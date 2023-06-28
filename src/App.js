@@ -5,7 +5,6 @@ import Departments from './user/container/Departments';
 import Doctors from './user/container/Doctors';
 import About from './user/container/About';
 import Contact from './user/container/Contact';
-import { Routes, Route } from 'react-router-dom'
 import Doctor from './user/container/Doctor';
 import VisitingDoctor from './user/container/VisitingDoctor';
 import Appointment from './user/container/Appointment';
@@ -18,18 +17,22 @@ import Medicine from './admin/container/Medicine';
 import Product from './admin/container/Product';
 import AdminDoctor from './admin/container/AdminDoctor';
 import Adminppointment from './admin/container/Adminppointment';
+import User from './routes/User';
+import Admin from './routes/Admin';
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <>
-      <Muidrawer />
-      <Routes>
-          <Route path='/Medicine' element={<Medicine />} />
-          <Route path='/Product' element={<Product />} />
-          <Route path='/Doctor' element={<AdminDoctor />} />
-          <Route path='/Appointment' element={<Adminppointment />} />
-      </Routes>
-    </>
+    // <>
+    //   <Muidrawer>
+    //     <Routes>
+    //       <Route path='/Medicine' element={<Medicine />} />
+    //       <Route path='/Product' element={<Product />} />
+    //       <Route path='/Doctor' element={<AdminDoctor />} />
+    //       <Route path='/Appointment' element={<Adminppointment />} />
+    //     </Routes>
+    //   </Muidrawer>
+    // </>
     // <>
     //   <Header />
     //   <Routes>
@@ -55,7 +58,12 @@ function App() {
     //   </Routes>
     //   <Footer />
     // </>
-    
+
+    <Routes>
+      <Route path='/*' element={<User />} />
+      <Route path='/admin/*' element={<Admin />} />
+    </Routes>
+
   );
 }
 
