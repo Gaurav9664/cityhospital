@@ -11,30 +11,6 @@ import { Form, Formik, useFormik } from 'formik';
 
 
 function Medicine(props) {
-    let userSchema = yup.object().shape({
-        medicineName: yup.string().required('Please Enter Madicine Name'),
-        expiry: yup.date().min(new Date(), "Enter Valid Date").required("Please enter Date"),
-        
-    })
-
-    const formik = useFormik({
-        initialValues: {
-            medicineName: '',
-            expiry: '',
-        },
-
-        validationSchema: userSchema,
-        onSubmit: values => {
-            // alert(JSON.stringify(values, null, 2));
-
-        },
-    })
-
-
-    const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik
-    console.log(errors);
-
-
 
     const [open, setOpen] = React.useState(false);
 
@@ -45,6 +21,53 @@ function Medicine(props) {
     const handleClose = () => {
         setOpen(false);
     };
+
+    var d = new Date()
+    let nd = new Date(d.setDate(d.getDate() - 1))
+
+    let userSchema = yup.object().shape({
+        medicineName: yup.string().required('Please Enter Madicine Name'),
+        expiry: yup.date().min(nd, "Enter Valid Date").required("Please enter Date"),
+        price: yup.string().required('Plase Enter Price'),
+        description: yup.string().required('Plase Enter description')
+    })
+
+    const handleAdd = (data) => {
+        handleClose()
+        let localdata = JSON.parse(localStorage.getItem('medicine'))
+
+        let rnd = Math.floor(Math.rendom() * 1000)
+
+        let newData = {id: rnd, ...data};
+
+
+        if (localdata === null) {
+            localStorage.setItem("medicine", JSON.stringify([newData]))
+        }else {
+            localdata.push(newData)
+            localStorage.setItem("medicine", JSON.stringify(localdata))
+        }
+    }
+
+    const formik = useFormik({
+        initialValues: {
+            medicineName: '',
+            expiry: '',
+            price: '',
+            description: ''
+        },
+
+        validationSchema: userSchema,
+        onSubmit: (values, action) => {
+            handleAdd(values)
+            action.resetForm();
+        },
+    })
+
+
+    const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik
+    console.log(errors);
+
     return (
         <div>
             <Button variant="outlined" onClick={handleClickOpen}>
@@ -94,7 +117,6 @@ function Medicine(props) {
                                 name='price'
                                 fullWidth
                                 variant="filled"
-
                                 value={values.price}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -104,18 +126,20 @@ function Medicine(props) {
 
                             <TextField
                                 margin="dense"
-                                id="year"
-                                label="year"
-                                type="number"
-                                name='year'
+                                id="description"
+                                label="description"
+                                type="text"
+                                name='description'
                                 fullWidth
+                                multiline
+                                rows={4}
                                 variant="filled"
 
-                                value={values.year}
+                                value={values.description}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
-                            <span className='error'>{errors.year && touched.year ? errors.year : ''}</span>
+                            <span className='error'>{errors.description && touched.description ? errors.description : ''}</span>
 
                             <DialogActions>
                                 <Button onClick={handleClose}>Cancel</Button>
