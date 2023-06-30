@@ -8,11 +8,61 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import * as yup from 'yup'
 import { Form, Formik, useFormik } from 'formik';
-
+import { DataGrid } from '@mui/x-data-grid';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 
 function Medicine(props) {
 
     const [open, setOpen] = React.useState(false);
+    const [data, setDate] = React.useState([])
+
+    React.useEffect(() => {
+        let localdata = JSON.parse(localStorage.getItem('medicine'))
+
+        if (localdata !== null) {
+            setDate(localdata)
+        }
+
+    }, [])
+
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'medicineName', headerName: 'medicineName', width: 130 },
+        { field: 'expiry', headerName: 'expiry', width: 130 },
+        { field: 'price', headerName: 'price', width: 130 },
+        { field: 'description', headerName: 'description', width: 130 },
+        {
+            field: 'icone',
+            headerName: 'Action',
+            width: 150,
+            renderCell: (params) => (
+                <>
+                    <IconButton aria-label="delete" onClick={() => hendalDelete(params.row.id)}>
+                        <DeleteIcon />
+                    </IconButton>
+                    <Button variant="contained" endIcon={<SendIcon />}>
+                        Edit
+                    </Button>
+                </>
+            ),
+        },
+    ];
+
+    const hendalDelete = (id) => {
+        let localdata = JSON.parse(localStorage.getItem('medicine'))
+
+        let fData = localdata.filter((v, i) => v.id !== id);
+
+        localStorage.setItem("medicine", JSON.stringify(fData))
+        setDate(fData)
+    }
+
+    const rows = [
+        { id: 1, medicineName: 'Snow', expiry: 'Jon', price: 35, description: '' },
+    ];
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -36,16 +86,18 @@ function Medicine(props) {
         handleClose()
         let localdata = JSON.parse(localStorage.getItem('medicine'))
 
-        let rnd = Math.floor(Math.rendom() * 1000)
+        let rnd = Math.floor(Math.random() * 1000)
 
-        let newData = {id: rnd, ...data};
+        let newData = { id: rnd, ...data };
 
 
         if (localdata === null) {
             localStorage.setItem("medicine", JSON.stringify([newData]))
-        }else {
+            setDate([newData])
+        } else {
             localdata.push(newData)
             localStorage.setItem("medicine", JSON.stringify(localdata))
+            setDate(localdata)
         }
     }
 
@@ -149,6 +201,19 @@ function Medicine(props) {
                     </Formik>
                 </DialogContent>
             </Dialog>
+            <div style={{ height: 400, width: '100%' }}>
+                <DataGrid
+                    rows={data}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                />
+            </div>
         </div>
     );
 }
