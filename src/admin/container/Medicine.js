@@ -12,6 +12,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 function Medicine(props) {
 
@@ -42,7 +43,7 @@ function Medicine(props) {
                     <IconButton aria-label="delete" onClick={() => hendalDelete(params.row.id)}>
                         <DeleteIcon />
                     </IconButton>
-                    <Button variant="contained" endIcon={<SendIcon />}>
+                    <Button variant="contained" endIcon={<ModeEditIcon />} onClick={() => hendlEdit()}>
                         Edit
                     </Button>
                 </>
@@ -57,6 +58,10 @@ function Medicine(props) {
 
         localStorage.setItem("medicine", JSON.stringify(fData))
         setDate(fData)
+    }
+
+    const hendlEdit = ()  => {
+        handleClickOpen()
     }
 
     const rows = [
