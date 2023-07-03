@@ -43,7 +43,7 @@ function Medicine(props) {
                     <IconButton aria-label="delete" onClick={() => hendalDelete(params.row.id)}>
                         <DeleteIcon />
                     </IconButton>
-                    <Button variant="contained" endIcon={<ModeEditIcon />} onClick={() => hendlEdit()}>
+                    <Button variant="contained" endIcon={<ModeEditIcon />} onClick={() => hendlEdit(params.row)}>
                         Edit
                     </Button>
                 </>
@@ -60,8 +60,14 @@ function Medicine(props) {
         setDate(fData)
     }
 
-    const hendlEdit = ()  => {
-        handleClickOpen()
+    const hendlEdit = (data)  => {
+        handleClickOpen();
+
+        setDate(data)
+    
+        formik.setValues(data);
+    
+        console.log(data);
     }
 
     const rows = [
@@ -212,10 +218,11 @@ function Medicine(props) {
                     columns={columns}
                     initialState={{
                         pagination: {
-                            paginationModel: { page: 0, pageSize: 5 },
+                            paginationModel: { page: 0, pageSize: 10 },
                         },
                     }}
-                    pageSizeOptions={[5, 10]}
+                    pageSizeOptions={[10, 20, 30, 40
+                    ]}
                     checkboxSelection
                 />
             </div>
