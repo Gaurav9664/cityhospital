@@ -18,6 +18,17 @@ function Medicine(props) {
 
     const [open, setOpen] = React.useState(false);
     const [data, setDate] = React.useState([])
+    const [update, setUpdate] = React.useState(null)
+
+    var d = new Date()
+    let nd = new Date(d.setDate(d.getDate() - 1))
+
+    let userSchema = yup.object().shape({
+        medicineName: yup.string().required('Please Enter Madicine Name'),
+        expiry: yup.date().min(nd, "Enter Valid Date").required("Please enter Date"),
+        price: yup.string().required('Plase Enter Price'),
+        description: yup.string().required('Plase Enter description')
+    })
 
     React.useEffect(() => {
         let localdata = JSON.parse(localStorage.getItem('medicine'))
@@ -60,20 +71,11 @@ function Medicine(props) {
         setDate(fData)
     }
 
-    const hendlEdit = (data)  => {
+    const hendlEdit = (data) => {
         handleClickOpen();
-
-        setDate(data)
-    
         formik.setValues(data);
-    
-        console.log(data);
+        setUpdate(data)
     }
-
-    const rows = [
-        { id: 1, medicineName: 'Snow', expiry: 'Jon', price: 35, description: '' },
-    ];
-
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -83,18 +85,7 @@ function Medicine(props) {
         setOpen(false);
     };
 
-    var d = new Date()
-    let nd = new Date(d.setDate(d.getDate() - 1))
-
-    let userSchema = yup.object().shape({
-        medicineName: yup.string().required('Please Enter Madicine Name'),
-        expiry: yup.date().min(nd, "Enter Valid Date").required("Please enter Date"),
-        price: yup.string().required('Plase Enter Price'),
-        description: yup.string().required('Plase Enter description')
-    })
-
-    const handleAdd = (data) => {
-        handleClose()
+    const handlesubmitdata = (data) => {
         let localdata = JSON.parse(localStorage.getItem('medicine'))
 
         let rnd = Math.floor(Math.random() * 1000)
@@ -106,10 +97,26 @@ function Medicine(props) {
             localStorage.setItem("medicine", JSON.stringify([newData]))
             setDate([newData])
         } else {
-            localdata.push(newData)
-            localStorage.setItem("medicine", JSON.stringify(localdata))
-            setDate(localdata)
+            if (update) {
+                let uData = localdata.map((v, i) => {
+                    if (v.id === data.id) {
+                        return data;
+                    } else {
+                        return v;
+                    }
+                })
+                localStorage.setItem("medicine", JSON.stringify(uData))
+                setDate(uData)
+
+            } else {
+                localdata.push(newData)
+                localStorage.setItem("medicine", JSON.stringify(localdata))
+                setDate(localdata)
+            }
         }
+
+        handleClose()
+        setUpdate(null)
     }
 
     const formik = useFormik({
@@ -122,7 +129,7 @@ function Medicine(props) {
 
         validationSchema: userSchema,
         onSubmit: (values, action) => {
-            handleAdd(values)
+            handlesubmitdata(values)
             action.resetForm();
         },
     })

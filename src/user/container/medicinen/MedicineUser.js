@@ -28,10 +28,11 @@ function MedicineUser(props) {
 
         let fData = localdata.filter((v) => 
             v.medicineName.toLowerCase().includes(val.toLowerCase()) ||
-            v.price.toString().includes(val)
+            v.price.toString().includes(val) ||
+            v.expiry.toString().includes(val)
         )
 
-        console.log(fData);
+        setm_data(fData);
     }
 
     return (
