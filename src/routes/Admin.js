@@ -1,6 +1,6 @@
 import React from 'react';
 import Muidrawer from '../admin/component/Muidrawer';
-import Medicine from '../admin/container/Medicine';
+import Medicine from '../admin/container/Medicine/Medicine';
 import Product from '../admin/container/Product';
 import AdminDoctor from '../admin/container/AdminDoctor';
 import Adminppointment from '../admin/container/Adminppointment';
