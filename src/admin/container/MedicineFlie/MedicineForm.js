@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -8,80 +7,19 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import * as yup from 'yup'
 import { Form, Formik, useFormik } from 'formik';
-import { DataGrid } from '@mui/x-data-grid';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import React, { useEffect } from 'react';
 
-function Medicine(props) {
-
+function MedicineForm({ onsubmitData, onupdate }) {
     const [open, setOpen] = React.useState(false);
-    const [data, setDate] = React.useState([])
 
-    React.useEffect(() => {
-        let localdata = JSON.parse(localStorage.getItem('medicine'))
-
-        if (localdata !== null) {
-            setDate(localdata)
+    useEffect(() => {
+        if (onupdate) {
+            handleClickOpen();
+            formik.setValues(onupdate);
         }
 
-    }, [])
+    }, [onupdate])
 
-    const columns = [
-        { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'medicineName', headerName: 'medicineName', width: 130 },
-        { field: 'expiry', headerName: 'expiry', width: 130 },
-        { field: 'price', headerName: 'price', width: 130 },
-        { field: 'description', headerName: 'description', width: 130 },
-        {
-            field: 'icone',
-            headerName: 'Action',
-            width: 150,
-            renderCell: (params) => (
-                <>
-                    <IconButton aria-label="delete" onClick={() => hendalDelete(params.row.id)}>
-                        <DeleteIcon />
-                    </IconButton>
-                    <Button variant="contained" endIcon={<ModeEditIcon />} onClick={() => hendlEdit(params.row)}>
-                        Edit
-                    </Button>
-                </>
-            ),
-        },
-    ];
-
-    const hendalDelete = (id) => {
-        let localdata = JSON.parse(localStorage.getItem('medicine'))
-
-        let fData = localdata.filter((v, i) => v.id !== id);
-
-        localStorage.setItem("medicine", JSON.stringify(fData))
-        setDate(fData)
-    }
-
-    const hendlEdit = (data)  => {
-        handleClickOpen();
-
-        setDate(data)
-    
-        formik.setValues(data);
-    
-        console.log(data);
-    }
-
-    const rows = [
-        { id: 1, medicineName: 'Snow', expiry: 'Jon', price: 35, description: '' },
-    ];
-
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     var d = new Date()
     let nd = new Date(d.setDate(d.getDate() - 1))
@@ -93,24 +31,13 @@ function Medicine(props) {
         description: yup.string().required('Plase Enter description')
     })
 
-    const handleAdd = (data) => {
-        handleClose()
-        let localdata = JSON.parse(localStorage.getItem('medicine'))
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
-        let rnd = Math.floor(Math.random() * 1000)
-
-        let newData = { id: rnd, ...data };
-
-
-        if (localdata === null) {
-            localStorage.setItem("medicine", JSON.stringify([newData]))
-            setDate([newData])
-        } else {
-            localdata.push(newData)
-            localStorage.setItem("medicine", JSON.stringify(localdata))
-            setDate(localdata)
-        }
-    }
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -122,17 +49,18 @@ function Medicine(props) {
 
         validationSchema: userSchema,
         onSubmit: (values, action) => {
-            handleAdd(values)
+            // handlesubmitdata(values)
+            handleClose()
             action.resetForm();
+            onsubmitData(values)
         },
     })
-
 
     const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik
     console.log(errors);
 
     return (
-        <div>
+        <>
             <Button variant="outlined" onClick={handleClickOpen}>
                 Add Medicine
             </Button>
@@ -212,22 +140,9 @@ function Medicine(props) {
                     </Formik>
                 </DialogContent>
             </Dialog>
-            <div style={{ height: 400, width: '100%' }}>
-                <DataGrid
-                    rows={data}
-                    columns={columns}
-                    initialState={{
-                        pagination: {
-                            paginationModel: { page: 0, pageSize: 10 },
-                        },
-                    }}
-                    pageSizeOptions={[10, 20, 30, 40
-                    ]}
-                    checkboxSelection
-                />
-            </div>
-        </div>
+
+        </>
     );
 }
 
-export default Medicine;
+export default MedicineForm;

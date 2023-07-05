@@ -31,7 +31,7 @@ function MedicineUser(props) {
             v.price.toString().includes(val)
         )
 
-        console.log(fData);
+        setm_data(fData);
     }
 
     return (
