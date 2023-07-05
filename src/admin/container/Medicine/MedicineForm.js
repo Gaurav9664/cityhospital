@@ -41,9 +41,10 @@ function MedicineForm(props) {
 
         validationSchema: userSchema,
         onSubmit: (values, action) => {
-            // handlesubmitdata(values)
+            handlesubmitdata(values)
             handleClose()
             action.resetForm();
+            props.recived(values)
         },
     })
 
