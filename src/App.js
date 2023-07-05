@@ -20,6 +20,7 @@ import Adminppointment from './admin/container/Adminppointment';
 import User from './routes/User';
 import Admin from './routes/Admin';
 import { Routes, Route } from 'react-router-dom'
+import PrivetRouter from './routes/PrivetRouter';
 
 function App() {
   return (
@@ -61,7 +62,7 @@ function App() {
 
     <Routes>
       <Route path='/*' element={<User />} />
-      <Route path='/admin/*' element={<Admin />} />
+      <Route path='/admin/*' element={<PrivetRouter privetkry={Admin} />} />
     </Routes>
 
   );
