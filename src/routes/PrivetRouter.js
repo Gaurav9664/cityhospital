@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Auth from "../user/container/Auth";
+import { nativeSelectClasses } from "@mui/material";
+import { Navigate, Outlet } from "react-router-dom";
 
-const PrivetRouter = ({ privetkry }) => {
-    const {} = privetkry
-    const [setKey, setsetKey] = useState('')
-
-    useEffect(() => {
-        let localData = localStorage.getItem("loginData")
-
-        if (!localData) {
-            setsetKey('/auth')
-        }
-    }, [])
-
+const PrivetRouter = (props) => {
+    let localdata = localStorage.getItem('loginStatus');
 
     return (
-        <div>
-
-        </div>
+        localdata ? <Outlet /> : <Navigate to={'/auth'} replace />
     )
 }
 

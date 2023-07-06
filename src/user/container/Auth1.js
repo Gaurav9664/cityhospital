@@ -1,12 +1,13 @@
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 function Auth1(props) {
 
 
     const [authtype, setauthtype] = useState('login');
+    const navicition = useNavigate()
 
     let authObj = {};
     let intiVal = {};
@@ -43,16 +44,31 @@ function Auth1(props) {
             email: ''
         }
     }
-
-
     let authSchema = yup.object(authObj)
+
+    const hendalLogin = () => {
+        localStorage.setItem("loginStatus", 'true');
+        navicition('/');
+    }
+    const hendalSignup = () => {
+        
+    }
+    const hendalForgot = () => {
+        
+    }
 
     const formik = useFormik({
         initialValues: intiVal,
         enableReinitialize: true,
         validationSchema: authSchema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            if (authtype === 'login') {
+                hendalLogin()
+            } else if (authtype === 'signup') {
+                hendalSignup()
+            }else if (authtype === 'forgot') {
+                hendalForgot()
+            }
         },
     });
 

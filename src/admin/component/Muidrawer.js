@@ -31,7 +31,7 @@ const DoctorData = [
   { labal: 'Product', to: '/admin/Product', icon: <ProductionQuantityLimitsIcon /> },
   { labal: 'Doctor', to: '/admin/Doctor', icon: <MedicationIcon /> },
   { labal: 'Appointment', to: '/admin/Appointment', icon: <BookOnlineIcon /> },
-  
+
 
 ]
 
@@ -117,14 +117,14 @@ export default function Layout({ children }) {
   return (
     <Box sx={{ display: 'flex', color: 'black' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{backgroundColor: 'grey', color: 'black',}} >
+      <AppBar position="fixed" open={open} sx={{ backgroundColor: 'grey', color: 'black', }} >
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ 
+            sx={{
               marginRight: 5,
               ...(open && { display: 'none' }),
             }}
@@ -132,11 +132,11 @@ export default function Layout({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            Admin Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer 
+      <Drawer
         variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>

@@ -1,7 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
- 
+import { Link } from 'react-router-dom'
+
 function Header(props) {
+    let localdata = localStorage.getItem('loginStatus');
+
+    const hendalLogout = () => {
+        localStorage.removeItem("loginStatus")
+    }
+
     return (
         <div className="main-header">
             <div id="topbar" className="d-flex align-items-center fixed-top">
@@ -28,7 +34,7 @@ function Header(props) {
                     </div>
                     <nav id="navbar" className="navbar order-last order-lg-0">
                         <ul>
-                            <li><Link className="nav-link scrollto active"  to={"/"} >Home</Link></li>
+                            <li><Link className="nav-link scrollto active" to={"/"} >Home</Link></li>
                             <li><Link className="nav-link scrollto" to={"/departments"}>Departments</Link></li>
                             <li><Link className="nav-link scrollto" to={"/doctors"}>Doctors</Link></li>
                             <li><Link className="nav-link scrollto " to={"/about"}>About</Link></li>
@@ -40,9 +46,16 @@ function Header(props) {
                     </nav>
                     <Link to={'/appointment'} className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
                         Appointment</Link>
-                    <Link to={"/auth"} className="appointment-btn scrollto">
-                        <span className="d-none d-md-inline">Login/ Signup</span>
-                    </Link>
+
+                    {
+                        localdata ?
+                            <Link to={"/"} className="appointment-btn scrollto" onClick={hendalLogout}>
+                                <span className="d-none d-md-inline">Logout</span>
+                            </Link> :
+                            <Link to={"/auth"} className="appointment-btn scrollto">
+                                <span className="d-none d-md-inline">Login/ Signup</span>
+                            </Link>
+                    }
                 </div>
             </header>
         </div>

@@ -15,6 +15,7 @@ import Fromvalidetion from '../test/Fromvalidetion';
 import Auth1 from '../user/container/Auth1';
 import { Route, Routes } from 'react-router-dom';
 import MedicineUser from '../user/container/medicinen/MedicineUser';
+import PrivetRouter from './PrivetRouter';
 
 function User(props) {
     return (
@@ -40,7 +41,10 @@ function User(props) {
                 {/* <Route path='/auth' element={<Auth />} /> */}
                 <Route path='/auth' element={<Auth1 />} />
                 <Route path='/Fromvalidetion' element={<Fromvalidetion />} />
-                <Route path='/MedicineUser' element={<MedicineUser />} />
+
+                <Route element={<PrivetRouter />}>
+                    <Route path='/MedicineUser' element={<MedicineUser />} />
+                </Route>
             </Routes>
             <Footer />
         </div>
