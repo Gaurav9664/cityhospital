@@ -2,6 +2,9 @@ import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import Button from '../UI/Button/Button';
+import Input from '../UI/Input/Input';
+import Heading from '../UI/HeadingTag/Heading';
 
 function Auth1(props) {
 
@@ -79,8 +82,8 @@ function Auth1(props) {
         <div className="container">
             <div className="section-title">
                 {
-                    authtype === 'login' ? <h2>Login</h2> :
-                        authtype === 'signup' ? <h2>sign up</h2> : <h2>reset password</h2>
+                    authtype === 'login' ? <Heading type={'h2'}>Login</Heading> :
+                        authtype === 'signup' ? <Heading type={'h2'}>sign up</Heading> : <Heading type={'h2'}>reset password</Heading>
 
 
                 }
@@ -99,20 +102,18 @@ function Auth1(props) {
                         null :
                         <>
                             <div className="col-md-7 form-group">
-                                <input type="text"
-                                    name="name"
-                                    className="form-control"
-                                    id="name"
-                                    placeholder="Your Name"
-                                    data-rule="minlen:4"
-                                    data-msg="Please enter at least 4 chars"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.name}
-                                />
+                            <Input type="text"
+                                            name="name"
+                                            className="form-control"
+                                            id="name"
+                                            value={values.name}
+                                            onBlur={handleBlur}
+                                            onChange={handleChange}
+                                            placeholder="Your Name"
+                                            errors={errors.name && touched.name ? errors.name : ''}
+                                        />
                                 <div className="validate" />
                             </div>
-                            <span className='errors'>{errors.name && touched.name ? errors.name : ''}</span>
                         </>
 
 
@@ -120,42 +121,38 @@ function Auth1(props) {
 
                 <>
                     <div className="col-md-7 form-group mt-3 mt-md-0">
-                        <input type="email"
-                            className="form-control"
-                            name="email"
-                            id="email"
-                            placeholder="Your Email"
-                            data-rule="email"
-                            data-msg="Please enter a valid email"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.email}
-                        />
+                    <Input type="email"
+                                    className="form-control"
+                                    name="email" id="email"
+                                    value={values.email}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    placeholder="Your Email"
+                                    errors={errors.email && touched.email ? errors.email : ''}
+                                />
                         <div className="validate" />
                     </div>
-                    <span className='errors'>{errors.email && touched.email ? errors.email : ''}</span>
+                    
                 </>
 
                 {
                     authtype === 'forgot' ? null :
                         <>
                             <div className="col-md-7 form-group mt-3 mt-md-0">
-                                <input
-                                    type="password"
+                            <Input type="password"
                                     className="form-control"
-                                    name="pass"
-                                    id="pass"
-                                    placeholder="Your Password"
-                                    data-rule="minlen:4"
-                                    data-msg="Please enter at least 4 chars"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
+                                    name="password"
+                                    id="password"
                                     value={values.pass}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    placeholder="Your Password"
+                                    errors={errors.pass && touched.pass ? errors.pass : ''}
                                 />
                                 <div className="validate" />
 
                             </div>
-                            <span className='errors'>{errors.pass && touched.pass ? errors.pass : ''}</span>
+
                         </>
 
                 }
@@ -163,12 +160,12 @@ function Auth1(props) {
 
 
                 {
-                    authtype === 'login' ? <div id='login' className="text-center"><button type="submit">Login</button></div>
+                    authtype === 'login' ? <div id='login' className="text-center"><Button type="primary">Login</Button></div>
                         :
                         authtype === 'signup' ?
-                            <div id='login' className="text-center"><button type="submit">Sign up</button></div>
+                            <div id='login' className="text-center"><Button type="secondary">Sign up</Button></div>
                             :
-                            <div id='login' className="text-center"><button type="submit">submit</button></div>
+                            <div id='login' className="text-center"><Button type="outline">submit</Button></div>
 
                 }
 

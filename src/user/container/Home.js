@@ -1,12 +1,13 @@
 import React from 'react';
+import Heading from '../UI/HeadingTag/Heading';
 
 function Home(props) {
     return (
         <div>
             <section id="hero" className="d-flex align-items-center">
                 <div className="container">
-                    <h1>Welcome to City <br />Multispeciality Hospital</h1>
-                    <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
+                    <Heading type={'h1'} >Welcome to City <br />Multispeciality Hospital</Heading>
+                    <Heading type={'h2'} >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Heading>
                 </div>
             </section>
             <main id="main">
@@ -19,28 +20,28 @@ function Home(props) {
                                 <div className="count-box">
                                     <i className="fas fa-user-md" />
                                     <span>23</span>
-                                    <p>Doctors</p>
+                                    <Heading type={'p'}>Doctors</Heading>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
                                 <div className="count-box">
                                     <i className="far fa-hospital" />
                                     <span>18</span>
-                                    <p>Departments</p>
+                                    <Heading type={'p'}>Departments</Heading>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div className="count-box">
                                     <i className="fas fa-heartbeat" />
                                     <span>980</span>
-                                    <p>Patients</p>
+                                    <Heading type={'p'}>Patients</Heading>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div className="count-box">
                                     <i className="fas fa-award" />
                                     <span>12</span>
-                                    <p>Awards</p>
+                                    <Heading type={'p'}>Awards</Heading>
                                 </div>
                             </div>
                         </div>
@@ -50,16 +51,16 @@ function Home(props) {
                     <div className="container">
                         <div className="section-title">
                             <h2>Our Facilities</h2>
-                            <p>Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat sollicitudin. Fusce tincidunt sit
+                            <Heading type={'p'}>Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat sollicitudin. Fusce tincidunt sit
                                 amet ex in volutpat. Donec lacinia finibus tortor. Curabitur luctus eleifend odio. Phasellus placerat mi et
-                                suscipit pulvinar. Donec quis tristique lectus.</p>
+                                suscipit pulvinar. Donec quis tristique lectus.</Heading>
                         </div>
                         <div className="row">
                             <div className="col-lg-4 col-md-6 d-flex align-items-stretch">
                                 <div className="icon-box">
                                     <div className="icon"><i className="fas fa-hospital-alt" /></div>
-                                    <h4><a href>24x7 Emergency Available</a></h4>
-                                    <p>Nullam accumsan, velit et porta consequat, purus leo congue risus</p>
+                                    <Heading type={'h4'}><a href>24x7 Emergency Available</a></Heading>
+                                    <Heading type={'p'}>Nullam accumsan, velit et porta consequat, purus leo congue risus</Heading>
                                 </div>
                             </div>
                             <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
