@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import MyLink from '../UI/Link/MyLink';
 
 function Header(props) {
     let localdata = localStorage.getItem('loginStatus');
@@ -17,10 +18,10 @@ function Header(props) {
                         <i className="bi bi-phone" /> +91 9988776655
                     </div>
                     <div className="d-none d-lg-flex social-links align-items-center">
-                        <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
-                        <a href="#" className="facebook"><i className="bi bi-facebook" /></a>
-                        <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
-                        <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
+                        <MyLink href="#" className="twitter"><i className="bi bi-twitter" /></MyLink>
+                        <MyLink href="#" className="facebook"><i className="bi bi-facebook" /></MyLink>
+                        <MyLink href="#" className="instagram"><i className="bi bi-instagram" /></MyLink>
+                        <MyLink href="#" className="linkedin"><i className="bi bi-linkedin" /></MyLink>
                     </div>
                 </div>
             </div>
