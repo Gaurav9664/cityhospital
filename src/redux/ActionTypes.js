@@ -1,0 +1,4 @@
+export const GET_DOCTORS = "GET_DOCTORS";
+export const POST_DOCTORS = "POST_DOCTORS";
+export const UPDATE_DOCTORS = "UPDATE_DOCTORS";
+export const DELETE_DOCTORS = "DELETE_DOCTORS";

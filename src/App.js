@@ -15,7 +15,7 @@ import Auth1 from './user/container/Auth1';
 import Muidrawer from './admin/component/Muidrawer';
 import Medicine from './admin/container/MedicineFlie/Medicine';
 import Product from './admin/container/Product';
-import AdminDoctor from './admin/container/AdminDoctor';
+import AdminDoctor from './admin/container/Doctor/AdminDoctor';
 import Adminppointment from './admin/container/Adminppointment';
 import User from './routes/User';
 import Admin from './routes/Admin';
@@ -62,9 +62,9 @@ function App() {
 
     <Routes>
       <Route path='/*' element={<User />} />
-      <Route element={<PrivetRouter />}>
+      {/* <Route element={<PrivetRouter />}> */}
         <Route path='/admin/*' element={<Admin />} />
-      </Route>
+      {/* </Route> */}
     </Routes>
 
   );
