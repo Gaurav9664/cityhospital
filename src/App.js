@@ -62,9 +62,9 @@ function App() {
 
     <Routes>
       <Route path='/*' element={<User />} />
-      <Route element={<PrivetRouter />}>
-        <Route path='/admin/*' element={<Admin />} />
-      </Route>
+      {/* <Route element={<PrivetRouter />}> */}
+      <Route path='/admin/*' element={<Admin />} />
+      {/* </Route> */}
     </Routes>
 
   );

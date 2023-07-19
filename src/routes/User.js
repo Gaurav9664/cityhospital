@@ -16,37 +16,40 @@ import Auth1 from '../user/container/Auth1';
 import { Route, Routes } from 'react-router-dom';
 import MedicineUser from '../user/container/medicinen/MedicineUser';
 import PrivetRouter from './PrivetRouter';
+import { Provider } from 'react-redux';
 
 function User(props) {
     return (
         <div>
-            <Header />
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/departments' element={<Departments />} />
-                <Route path='/doctors' element={<Doctors />} />
-                <Route path='/doctors/:id' element={<Doctor />} />
-                <Route path='/doctors/Visiting_Doctor' element={<VisitingDoctor />} />
-
-                <Route path='/doctors'>
+            {/* <Provider> */}
+                <Header />
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/departments' element={<Departments />} />
+                    <Route path='/doctors' element={<Doctors />} />
                     <Route path='/doctors/:id' element={<Doctor />} />
                     <Route path='/doctors/Visiting_Doctor' element={<VisitingDoctor />} />
-                </Route>
+
+                    <Route path='/doctors'>
+                        <Route path='/doctors/:id' element={<Doctor />} />
+                        <Route path='/doctors/Visiting_Doctor' element={<VisitingDoctor />} />
+                    </Route>
 
 
-                <Route path='/about' element={<About />} />
-                <Route path='/contact' element={<Contact />} />
-                <Route path='/appointment' element={<Appointment />} />
-                <Route path='*' element={<NotFound />} />
-                {/* <Route path='/auth' element={<Auth />} /> */}
-                <Route path='/auth' element={<Auth1 />} />
-                <Route path='/Fromvalidetion' element={<Fromvalidetion />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/contact' element={<Contact />} />
+                    <Route path='/appointment' element={<Appointment />} />
+                    <Route path='*' element={<NotFound />} />
+                    {/* <Route path='/auth' element={<Auth />} /> */}
+                    <Route path='/auth' element={<Auth1 />} />
+                    <Route path='/Fromvalidetion' element={<Fromvalidetion />} />
 
-                <Route element={<PrivetRouter />}>
-                    <Route path='/MedicineUser' element={<MedicineUser />} />
-                </Route>
-            </Routes>
-            <Footer />
+                    <Route element={<PrivetRouter />}>
+                        <Route path='/MedicineUser' element={<MedicineUser />} />
+                    </Route>
+                </Routes>
+                <Footer />
+            {/* </Provider> */}
         </div>
     );
 }
