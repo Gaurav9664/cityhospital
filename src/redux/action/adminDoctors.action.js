@@ -4,7 +4,7 @@ export const getDoctorData = () => (dispatch) => {
     try {
         fetch("http://localhost:3004/Doctor")
             .then((response) => response.json())
-            .then((data) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: data }))
+            .then((data) => console.log(data))
             .catch((error) => console.log(error))
 
     } catch (error) {
@@ -23,7 +23,7 @@ export const addDoctorData = (data) => (dispatch) => {
             body: JSON.stringify(data),
         })
         .then((response) => response.json())
-        .then((data) => console.log(data))
+        .then((data) => dispatch({ type: ActionTypes.POST_DOCTORS, payload: data}))
     } catch (error) {
         console.log(error);
     }

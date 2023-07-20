@@ -9,7 +9,9 @@ import * as yup from 'yup'
 import Button from '@mui/material/Button';
 
 
-function AdminDoctorForm({ onhandlesubmit, onupdate }) {
+function 
+
+AdminDoctorForm({ onhandlesubmit, onupdate }) {
 
     const [open, setOpen] = React.useState(false);
 

@@ -9,7 +9,6 @@ function AdminDoctor(props) {
 
     const dispatch = useDispatch()
     const doctorData = useSelector(state => state.doctors)
-    console.log(doctorData)
 
     useEffect(() => {
         dispatch(getDoctorData())
