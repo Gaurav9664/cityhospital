@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DataGrid } from '@mui/x-data-grid';
 import { addDoctorData, getDoctorData } from '../../../redux/action/adminDoctors.action';
 import AdminDoctorForm from './AdminDoctorForm';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function AdminDoctor(props) {
 
     const dispatch = useDispatch()
     const doctorData = useSelector(state => state.doctors)
+    console.log(doctorData.doctors);
 
     useEffect(() => {
         dispatch(getDoctorData())

@@ -2,6 +2,6 @@ import { combineReducers } from "redux";
 import { doctorReducer } from "./reducer/doctor.reducer";
 
 
-export const rootReducer = combineReducers({
+export const rootDoctorReducer = combineReducers({
     doctors: doctorReducer
 })

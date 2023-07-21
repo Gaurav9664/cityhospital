@@ -1,3 +1,5 @@
+export const LOADING_DOCTORS = "LOADING_DOCTORS";
+export const ERROR_DOCTORS = "ERROR_DOCTORS";
 export const GET_DOCTORS = "GET_DOCTORS";
 export const POST_DOCTORS = "POST_DOCTORS";
 export const UPDATE_DOCTORS = "UPDATE_DOCTORS";

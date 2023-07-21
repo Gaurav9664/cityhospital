@@ -57,7 +57,6 @@ function MedicineForm({ onsubmitData, onupdate }) {
     })
 
     const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik
-    console.log(errors);
 
     return (
         <>

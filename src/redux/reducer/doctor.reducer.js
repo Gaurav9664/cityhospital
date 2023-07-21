@@ -2,11 +2,13 @@ import * as ActionTypes from "../ActionTypes"
 
 const initialState = {
     doctors: [],
-    isloading: false,
+    loading: false,
     error: null 
 }
 
 export const doctorReducer = (state = initialState, action) => {
+    console.log(action.type);
+
     switch (action.type) {
         case ActionTypes.GET_DOCTORS:
             return {
